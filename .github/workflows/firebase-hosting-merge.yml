@@ -10,14 +10,13 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install Node
-      - uses: actions/setup-node@v3
-         with:node-version:14.18.1
-      - name: npm dependencies
-        run: npm install     
-      - name: Build
-        run: npm run build
+      - uses: dreamcodez/dead-simple-nodejs@1.0.1
+        with:
+            # nodejs version to install
+            NODE_VERSION: 14.18.1
+            # nodejs distro to install
+            NODE_DISTRO: linux-x64
+      - run: npm install @angular/cli & npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
